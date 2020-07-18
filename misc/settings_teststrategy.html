@@ -1,0 +1,154 @@
+<!-- HillsSim -->
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<HTML>
+  <HEAD>
+    <TITLE>HillsSim - Test Strategy</TITLE>
+    <STYLE>
+    	table, th, td {
+    		word-wrap: break-word;
+    		border: 1px solid black;
+    		border-collapse: collapse;
+		}
+		
+		table {
+			table-layout: fixed;
+			width: 45%;
+		}
+		
+		th.NO {
+			width: 50px;
+		}
+    </STYLE>
+  </HEAD>
+  <BODY>
+    <H1>HillsSim - Test Strategy</H1>
+    <P>Settings for the Test Strategy: Test Account and Orders<BR /><I>Date: 28 Feb 2018</I></P>
+
+    
+    <H2>General</H2>
+    <TABLE ID="GENERAL">
+	    <TR>
+	        <TH CLASS="NO">No.</TH>
+    		<TH>Name</TH>
+    		<TH>Description</TH>
+    		<TH>Value</TH>
+	    </TR>
+	    <TR CLASS="SETTING PRIMITIVE-STRING" ID="GEN_STRATEGY_NAME">
+	    	<TD>1</TD>
+	    	<TD>Strategy name</TD>
+	    	<TD>Java class name</TD>
+	    	<TD CLASS="VALUE">TestStrategy</TD>
+	    </TR>    
+	    <TR CLASS="SETTING PRIMITIVE-STRING" ID="GEN_OUTPUT_DIRECTORY">
+	    	<TD>2</TD>
+	    	<TD>Output directory</TD>
+	    	<TD>Directory for logs</TD>
+	    	<TD CLASS="VALUE">outputs\teststrategy\trial</TD>
+	    </TR>   	
+    </TABLE>  
+    <BR />
+    
+  	<TABLE ID="GENERAL">
+    <TR>
+        <TH CLASS="NO">No.</TH>
+		<TH>Name</TH>
+		<TH>Description</TH>
+		<TH>Value (Lower)</TH>
+		<TH>Value (Upper)</TH>
+    </TR>
+    <TR CLASS="SETTING BOUNDED-DATETIME" ID="GEN_PERIOD_RANGE">
+    	<TD>3</TD>
+    	<TD>Period start/end</TD>
+    	<TD>Start and end of the simulation</TD>
+    	<TD CLASS="VALUE-LOWER">2008-01-01 09:00:00</TD>
+    	<TD CLASS="VALUE-UPPER">2008-01-01 23:59:59</TD>
+    </TR> 
+  	</TABLE>
+  	<BR />
+  	
+  	<H2>EA (Expert Advisor)</H2>
+  	<TABLE ID="EA">
+  		<TR>
+	        <TH CLASS="NO">No.</TH>
+    		<TH>Name</TH>
+    		<TH>Description</TH>
+    		<TH>Value (Start)</TH>
+    		<TH>Value (End)</TH>
+    		<TH>Value (Step)</TH>
+	    </TR>
+	    <TR CLASS="SETTING RANGE-INTEGER" ID="EA_TEST_ID">
+	    	<TD>1</TD>
+	    	<TD>Test ID</TD>
+	    	<TD>1 step is 1 period</TD>
+	    	<TD CLASS="VALUE-START">1</TD>
+	    	<TD CLASS="VALUE-END">61</TD>
+	    	<TD CLASS="VALUE-STEP">1</TD>	
+	    </TR>  
+    </TABLE>
+    <BR />
+      
+    <H2>Account</H2>
+    <TABLE ID="ACCOUNT">
+	    <TR>
+	        <TH CLASS="NO">No.</TH>
+    		<TH>Name</TH>
+    		<TH>Description</TH>
+    		<TH>Value</TH>
+	    </TR>
+	    <TR CLASS="SETTING PRIMITIVE-FLOAT" ID="ACC_BALANCE">
+	    	<TD>1</TD>
+	    	<TD>Account balance</TD>
+	    	<TD>Simulated amount</TD>
+	    	<TD CLASS="VALUE">10000</TD>
+	    </TR>
+	    <TR CLASS="SETTING PRIMITIVE-STRING" ID="ACC_CURRENCY">
+	    	<TD>2</TD>
+	    	<TD>Currency</TD>
+	    	<TD>Simulated currency</TD>
+	    	<TD CLASS="VALUE">USD</TD>
+	    </TR>	 
+	    <TR CLASS="SETTING PRIMITIVE-BOOLEAN" ID="ACC_MARGIN_CALC">
+	    	<TD>3</TD>
+	    	<TD>Margin calculation enabled</TD>
+	    	<TD>True/False</TD>
+	    	<TD CLASS="VALUE">True</TD>
+	    </TR>
+	    <TR CLASS="SETTING PRIMITIVE-INTEGER" ID="ACC_STOP_OUT_LEVEL">
+	    	<TD>4</TD>
+	    	<TD>Stop out level</TD>
+	    	<TD>In %</TD>
+	    	<TD CLASS="VALUE">50</TD>
+	    </TR>	    	 	    
+    </TABLE> 
+    <BR />
+    
+    <H2>Symbol</H2>
+    <TABLE ID="SYMBOL">
+	    <TR>
+	        <TH CLASS="NO">No.</TH>
+    		<TH>Name</TH>
+    		<TH>Description</TH>
+    		<TH>Value</TH>
+	    </TR>
+	    <TR CLASS="SETTING PRIMITIVE-STRING" ID="SYM_SOURCE">
+	    	<TD>1</TD>
+	    	<TD>Symbol Source</TD>
+	    	<TD>Type OA for Oanda</TD>
+	    	<TD CLASS="VALUE">OA</TD>
+	    </TR>
+	    <TR CLASS="SETTING PRIMITIVE-STRING" ID="SYM_NAME">
+	    	<TD>2</TD>
+	    	<TD>Symbol Name</TD>
+	    	<TD>Name of symbol</TD>
+	    	<TD CLASS="VALUE">EUR_USD</TD>
+	    </TR>	 
+	    <TR CLASS="SETTING PRIMITIVE-STRING" ID="SYM_TIMEFRAME">
+	    	<TD>3</TD>
+	    	<TD>Time frame</TD>
+	    	<TD>Timeframes: H1, M30, M15, M5, M1 & S5</TD>
+	    	<TD CLASS="VALUE">M15</TD>
+	    </TR> 
+    </TABLE>  
+  </BODY>
+</HTML>

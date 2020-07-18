@@ -1,0 +1,259 @@
+<!-- The purpose of the file is to hold all the possible setting types for the HillsSim program -->
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<HTML>
+  <HEAD>
+    <TITLE>HillsSim - Design - Setting Rules</TITLE>
+    <STYLE>
+    	table, th, td {
+    		border: 1px solid black;
+    		border-collapse: collapse;
+		}
+		
+		table {
+			width: 60%;
+		}
+    </STYLE>
+  </HEAD>
+  <BODY>
+    <H1>HillsSim - Design - Setting Rules</H1>
+    <P>The purpose of this file is to hold all the rules for the setting of the HillsSim program.</P>
+    <P>
+    There are 3 types of settings: Primitive, Bounded, and Range. <BR />
+    Primitive, Bounded and Range settings are made from Basic values. <BR />
+    There are 2 types of Basic values: Unbuildable and Buildable. <BR />
+    Primitive settings can hold all basic values. Bounded and Range settings can only hold Buildable basic
+    values.<BR />
+    <BR />
+    Bounded values has a <I>lower-bound</I> and an <I>upper-bound</I>. 
+    For example, if a bounded variable X is between 1 
+    and 10, then the lower-bound is 1 and the upper-bound is 10. <BR />
+    Range values has a <I>start</I>, <I>end</I>, and <I>step size</I>. 
+    For example, if a range variable X starts from 1, ends at 50, and has a step size of 1, 
+    then the range will be {1, 2, ..., 50}. <BR />
+    </P>
+    
+    <H2>1. Table of Basic values</H2>
+    <TABLE>
+    	<TR>
+    		<TH>No.</TH>
+    		<TH>Name</TH>
+    		<TH>Type</TH>
+    		<TH>Description</TH>
+    	</TR>
+    	<TR>
+    		<TD>1</TD>
+    		<TD>String</TD>
+    		<TD>Unbuildable</TD>
+    		<TD>ASCII character set; List of characters used as text labels</TD>
+    	</TR>
+    	<TR>
+    		<TD>2</TD>
+    		<TD>Boolean</TD>
+    		<TD>Unbuildable</TD>
+    		<TD>True or False value</TD>
+    	</TR>    	    	
+    	<TR>
+    		<TD>3</TD>
+    		<TD>Integer</TD>
+    		<TD>Buildable</TD>
+    		<TD>Whole number; Similar to Integer data type</TD>
+    	</TR>   
+    	<TR>
+    		<TD>4</TD>
+    		<TD>Float</TD>
+    		<TD>Buildable</TD>
+    		<TD>Number with 2 decimal points; For dollar amounts and percentage uses</TD>
+    	</TR>
+    	<TR>
+    		<TD>5</TD>
+    		<TD>Date</TD>
+    		<TD>Buildable</TD>    		
+    		<TD>ISO 8601 format: <I>yyyy-mm-dd</I></TD>
+    	</TR>
+    	<TR>
+    		<TD>6</TD>
+    		<TD>Time</TD>
+    		<TD>Buildable</TD>     		
+    		<TD>ISO 8601 format: <I>hh:mm:ss</I> </TD>
+    	</TR>
+    	<TR>
+    		<TD>7</TD>
+    		<TD>DateTime</TD>
+    		<TD>Buildable</TD>     		
+    		<TD>ISO 8601 format: Combination of Date and Time values 
+    		<I>yyyy-mm-dd hh:mm:ss</I></TD>
+    	</TR>
+
+    </TABLE>
+    <BR />
+    
+    <H2>2. Sample tables for the Settings</H2>
+    <P>Below are the tables for Primitives, Bounded and Range.<BR /> 
+     All tables with the class "SETTINGS" will be parsed.  
+    </P> 
+    <H3>2.1 Table for Primitive Settings</H3>
+    <P>View the page source for the HTML coding convention. <BR />
+
+    All table row (tr tag) with the classes "SETTING" and "PRIMITIVE-&LT;BASIC VALUE&GT;" will be parsed. <BR />
+    All table data (td tag) with the class "VALUE" will be parsed. <BR />
+    </P>
+    <TABLE CLASS="SETTINGS" ID="SAMPLE-PRIMITIVE">
+	    <TR>
+	        <TH>No.</TH>
+    		<TH>Name</TH>
+    		<TH>Description</TH>
+    		<TH>Value</TH>
+	    </TR>
+	    <TR CLASS="SETTING PRIMITIVE-STRING" ID="STRATEGY">
+	    	<TD>1</TD>
+	    	<TD>Which Strategy?</TD>
+	    	<TD>Sample use of String</TD>
+	    	<TD CLASS="VALUE">Moving Average Crossover</TD>
+	    </TR>
+	    <TR CLASS="SETTING PRIMITIVE-BOOLEAN" ID="SIMULATION-TYPE">
+	    	<TD>2</TD>
+	    	<TD>Use 1 contract?</TD>
+	    	<TD>Sample use of Boolean</TD>
+	    	<TD CLASS="VALUE">True</TD>
+	    </TR>	    	    
+	    <TR CLASS="SETTING PRIMITIVE-INTEGER" ID="INDICATOR-SETTING">
+	    	<TD>3</TD>
+	    	<TD>Period for Moving Average</TD>
+	    	<TD>Sample use of Integer</TD>
+	    	<TD CLASS="VALUE">10</TD>
+	    </TR>
+	    <TR CLASS="SETTING PRIMITIVE-FLOAT" ID="ACCOUNT-BALANCE">
+	    	<TD>4</TD>
+	    	<TD>Account Balance (USD)</TD>
+	    	<TD>Sample use of Float</TD>
+	    	<TD CLASS="VALUE">10000.00</TD>
+	    </TR>
+	    <TR CLASS="SETTING PRIMITIVE-DATE" ID="START-TRADE-DATE">
+	    	<TD>5</TD>
+	    	<TD>Date (Start Trading)</TD>
+	    	<TD>Sample use of Date</TD>
+	    	<TD CLASS="VALUE">2017-12-26</TD>
+	    </TR>	    	    
+	    <TR CLASS="SETTING PRIMITIVE-TIME" ID="START-TRADE-TIME">
+	    	<TD>6</TD>
+	    	<TD>Time (Start Trading)</TD>
+	    	<TD>Sample use of Time</TD>
+	    	<TD CLASS="VALUE">18:00:00</TD>
+	    </TR>
+	    <TR CLASS="SETTING PRIMITIVE-DATETIME" ID="START-TRADE-DATETIME">
+	    	<TD>7</TD>
+	    	<TD>DateTime (Start Trading)</TD>
+	    	<TD>Sample use of DateTime</TD>
+	    	<TD CLASS="VALUE">2017-12-26 18:00:00</TD>
+	    </TR>	    	    
+    </TABLE>
+    <H3>2.2 Table for Bounded Settings</H3>
+    <P>View the page source for the HTML coding convention. <BR />
+
+    All table row (tr tag) with the classes "SETTING" and "BOUNDED-&LT;BUILDABLE VALUE&GT;" will be parsed. <BR />
+    All table data (td tag) with the classes "VALUE-LOWER" and "VALUE-UPPER" will be parsed. <BR />
+    </P>
+    <TABLE CLASS="SETTINGS" ID="SAMPLE-BOUNDED">
+	    <TR>
+	        <TH>No.</TH>
+    		<TH>Name</TH>
+    		<TH>Description</TH>
+    		<TH>Value (Lower)</TH>
+    		<TH>Value (Higher)</TH>    		
+	    </TR> 
+	    <TR CLASS="SETTING BOUNDED-INTEGER" ID="INDICATOR-SETTING">
+	    	<TD>1</TD>
+	    	<TD>Oversold/overbought for Oscillator</TD>
+	    	<TD>Sample use of Bounded-Integer</TD>
+	    	<TD CLASS="VALUE-LOWER">20</TD>
+	    	<TD CLASS="VALUE-UPPER">80</TD>
+	    </TR>
+	    <TR CLASS="SETTING BOUNDED-FLOAT" ID="CONTRACT-SIZE">
+	    	<TD>2</TD>
+	    	<TD>Size of Contract</TD>
+	    	<TD>Sample use of Bounded-Float</TD>
+	    	<TD CLASS="VALUE-LOWER">1.00</TD>
+	    	<TD CLASS="VALUE-UPPER">2.00</TD>
+	    </TR>
+	    <TR CLASS="SETTING BOUNDED-DATE" ID="TRADE-DATES">
+	    	<TD>3</TD>
+	    	<TD>Valid trading periods</TD>
+	    	<TD>Sample use of Bounded-Date</TD>
+	    	<TD CLASS="VALUE-LOWER">2017-12-01</TD>
+	    	<TD CLASS="VALUE-UPPER">2017-12-31</TD>
+	    </TR>	    	    
+	    <TR CLASS="SETTING BOUNDED-TIME" ID="TRADE-TIMES">
+	    	<TD>4</TD>
+	    	<TD>Valid trading times</TD>
+	    	<TD>Sample use of Bounded-Time</TD>
+	    	<TD CLASS="VALUE-LOWER">09:00:00</TD>
+	    	<TD CLASS="VALUE-UPPER">18:00:00</TD>
+	    </TR>
+	    <TR CLASS="SETTING BOUNDED-DATETIME" ID="TRADE-DATETIMES">
+	    	<TD>5</TD>
+	    	<TD>Valid trading periods</TD>
+	    	<TD>Sample use of Bounded-DateTime</TD>
+	    	<TD CLASS="VALUE-LOWER">2017-12-01 09:00:00</TD>
+	    	<TD CLASS="VALUE-UPPER">2017-12-31 18:00:00</TD>
+	    </TR>	    	    
+    </TABLE>
+    <H3>2.3 Table for Range Settings</H3>
+    <P>View the page source for the HTML coding convention. <BR />
+
+    All table row (tr tag) with the classes "SETTING" and "RANGE-&LT;BUILDABLE VALUE&GT;" will be parsed. <BR />
+    All table data (td tag) with the classes "VALUE-START", "VALUE-END" and "VALUE-STEP" will be parsed. <BR />
+    </P>
+    <TABLE CLASS="SETTINGS" ID="SAMPLE-RANGE">
+	    <TR>
+	        <TH>No.</TH>
+    		<TH>Name</TH>
+    		<TH>Description</TH>
+    		<TH>Value (Start)</TH>
+    		<TH>Value (End)</TH>
+    		<TH>Value (Step)</TH>     		
+	    </TR> 
+	    <TR CLASS="SETTING RANGE-INTEGER" ID="INDICATOR-SETTING">
+	    	<TD>1</TD>
+	    	<TD>Iteration for Moving Average</TD>
+	    	<TD>Sample use of Range-Integer</TD>
+	    	<TD CLASS="VALUE-START">1</TD>
+	    	<TD CLASS="VALUE-END">50</TD>
+	    	<TD CLASS="VALUE-STEP">1</TD>	    	
+	    </TR>
+	    <TR CLASS="SETTING RANGE-FLOAT" ID="CONTRACT-SIZE">
+	    	<TD>2</TD>
+	    	<TD>Size of Contract</TD>
+	    	<TD>Sample use of Range-Float (Step by 0.01)</TD>
+	    	<TD CLASS="VALUE-START">1.00</TD>
+	    	<TD CLASS="VALUE-END">2.00</TD>
+	    	<TD CLASS="VALUE-STEP">1</TD>	    	
+	    </TR>
+	    <TR CLASS="SETTING RANGE-DATE" ID="TRADE-DATES">
+	    	<TD>3</TD>
+	    	<TD>Valid trading periods</TD>
+	    	<TD>Sample use of Range-Date (Step by 1 day)</TD>
+	    	<TD CLASS="VALUE-START">2017-12-01</TD>
+	    	<TD CLASS="VALUE-END">2017-12-31</TD>
+	    	<TD CLASS="VALUE-STEP">1</TD>	    	
+	    </TR>	    	    
+	    <TR CLASS="SETTING RANGE-TIME" ID="TRADE-TIMES">
+	    	<TD>4</TD>
+	    	<TD>Valid trading times</TD>
+	    	<TD>Sample use of Range-Time (Step by 1 second)</TD>
+	    	<TD CLASS="VALUE-START">09:00:00</TD>
+	    	<TD CLASS="VALUE-END">18:00:00</TD>
+	    	<TD CLASS="VALUE-STEP">30</TD>	    	
+	    </TR>
+	    <TR CLASS="SETTING RANGE-DATETIME" ID="TRADE-DATETIMES">
+	    	<TD>5</TD>
+	    	<TD>Valid trading periods</TD>
+	    	<TD>Sample use of Range-DateTime (Step by 1 second)</TD>
+	    	<TD CLASS="VALUE-START">2017-12-01 09:00:00</TD>
+	    	<TD CLASS="VALUE-END">2017-12-31 18:00:00</TD>
+	    	<TD CLASS="VALUE-STEP">30</TD>	    	
+	    </TR>	    	    
+    </TABLE>
+    <BR />
+  </BODY>
+</HTML>

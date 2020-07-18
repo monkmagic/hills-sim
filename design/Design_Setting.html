@@ -1,0 +1,266 @@
+<!-- The purpose of the file is to document the design for the HillsSim program -->
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<HTML>
+  <HEAD>
+    <TITLE>HillsSim - Design - Settings package</TITLE>
+    <STYLE>
+    	table, th, td {
+    		border: 1px solid black;
+    		border-collapse: collapse;
+		}
+		
+		table {
+			width: 45%;
+		}
+		
+		p {
+			width: 45%;
+		}
+    </STYLE>
+  </HEAD>
+  <BODY>
+    <H1>HillsSim - Design - Settings package</H1>
+    <P><B>Last updated: 12 Jan 2018</B></P>
+    <P>The purpose of this file is to document the design of the Settings package, 
+    within the HillsSim program.</P>
+    <BR />
+    
+    <H2> 1. Introduction</H2>
+    <P>
+    	The Settings package contain all the classes necessary to:
+    	<OL>
+    		<LI>Extract user-defined settings by parsing a Settings HTML file.</LI>
+    		<LI>Define all setting types and values within HillsSim, 
+    			to represent the user-defined settings <BR />
+    			in the Settings HTML file.</LI>
+    		<LI>Define the complex classes, which hold the boundaries, parameters, and
+    			options to trade simulations.<BR />
+    			The complex classes are Account, General, Run, Strategy, and Symbol.</LI>
+    	</OL>
+    </P>
+    <BR />
+
+    <H2> 2. Top-level classes within Setting</H2>
+    <P>
+    	The Settings package contain the following top-level classes:
+    	<OL>
+    		<LI>Constants - contains the constants for all classes in the package</LI>
+    		<LI>SEHtmlParser - parses the HTML file into a List&lt;Setting&gt;, where
+    			Setting is defined below.</LI>
+    		<LI>SESettings - contains the complex Setting classes, for read-only access.</LI>
+    	</OL>
+    </P>
+    <BR />
+    
+    <H2> 3. Sub-packages within Setting</H2>
+	<P>
+		The Setting package holds sub-packages to organize the classes, 
+		according to the nature of the classes. <BR />
+		The sub-packages are:
+		<TABLE>
+			<TR>
+				<TH>No</TH>
+				<TH>Name</TH>
+				<TH>Description</TH>
+			</TR>
+			<TR>
+				<TD>1</TD>
+				<TD>Basic</TD>
+				<TD>Hold all classes for the 3 Setting types and all Setting values</TD>
+			</TR>
+			<TR>
+				<TD>2</TD>
+				<TD>Complex</TD>
+				<TD>Hold all complex Setting classes except Expert Advisor (EA) Settings</TD>
+			</TR>			
+			<TR>
+				<TD>3</TD>
+				<TD>Exceptions</TD>
+				<TD>Hold all exception classes for Settings package</TD>
+			</TR>
+		</TABLE>
+	</P>
+	<BR />
+	<H3> 3.1 Basic sub-package</H3>
+	<P>There are several classes within the Basic package, which are:
+		<OL>
+			<LI>Settings - The basic setting types are 
+				<UL>
+					<LI>Primitive</LI>
+					<LI>Bounded</LI>
+					<LI>Range</LI>
+				</UL>
+			</LI>
+			<LI>Setting values - The basic setting values are
+				<UL>
+					<LI>SVBoolean</LI>
+					<LI>SVDate</LI>
+					<LI>SVDateTime</LI>
+					<LI>SVFloat</LI>
+					<LI>SVInteger</LI>
+					<LI>SVString</LI>
+					<LI>SVTime</LI>
+				</UL>
+			</LI>
+		</OL>
+		
+		<H4>Settings can hold setting values.</H4>
+		A primitive setting is the basic setting where only 1 type
+		of setting value is held.<BR /> 
+		A bounded setting mimics a variable that has a lower 
+		and upper bound, hence, it holds 2 setting values
+		of the same type.<BR />
+		A range setting allows iteration to be expressed through a variable, by
+		having a start, end, and step values.<BR /> 
+		The start and end values are
+		the same type of setting value and the step value is a SVInteger type. 
+		<BR />
+		
+		<H4>Rules to parse Settings from HTML Settings file</H4>
+		<OL>
+			<LI>HTML TR id attribute will contain the name of the setting.<BR />
+			The name is the identifying key for the Setting, after the HTML
+			file is parsed.
+			<LI>HTML TR (table row) must hold 2 classes in its class attribute</LI>
+			<LI>HTML TR must contain the class "SETTING".</LI>
+			<LI>HTML TR must contain the 2nd class in the format
+				<I>"SettingType-SettingValue"</I>.<BR />
+				Where the <I>SettingType</I> is either:
+				<UL>
+					<LI>PRIMITIVE</LI>
+					<LI>BOUNDED</LI>
+					<LI>RANGE</LI>
+				</UL>
+				Where the <I>SettingValue</I> is listed below and can be used
+				only with the Setting types specified:
+				<UL>
+					<LI>Boolean: Primitive only</LI>
+					<LI>Date: All types</LI>
+					<LI>SVDateTime: All types</LI>
+					<LI>SVFloat: All types</LI>
+					<LI>SVInteger: All types</LI>
+					<LI>SVString: Primitive only</LI>
+					<LI>SVTime: All types</LI>
+				</UL>				
+				</LI>
+			<LI>For Primitive types, the TD tag, with the class "VALUE", will
+				hold the value</LI>
+			<LI>For Bounded types, the TD tags, with the classes "VALUE-LOWER"
+				and "VALUE-UPPER",<BR />
+				 will hold the lower and upper bound values
+				respectively</LI>
+			<LI>For Range types, the TD tags, with the classes "VALUE-START",
+				"VALUE-END", and 
+				"VALUE-STEP",<BR /> 
+				will hold the start, end, and step values 
+				respectively.</LI>
+		</OL>
+		
+		<H4>Exceptions handling</H4>
+		The exceptions handled by the classes within "values" sub-package are:
+		<UL>
+			<LI>Setting value:
+				<OL>
+					<LI>Parse from Setting to Java classes/primitive types</LI>
+				</OL>
+			</LI>
+			<LI>Setting type:
+				<OL>
+					<LI>Parse TD tags, with 'value' classes, for correct use.</LI>
+					<LI>Parse TR class attribute with the right format
+						i.e. <I>Setting-SettingValue</I></LI>
+					<LI>Parse TR id attribute</LI>
+					<LI>Parse "Setting" portion of Setting-SettingValue
+					from TR class attribute</LI>
+					<LI>Parse "SettingValue" portion of Setting-SettingValue
+					from TR class attribute</LI>
+					<LI>Verify that for Bounded setting (lower < upper) and for
+						Range setting (start < end)</LI>
+					<LI>Make Setting for Primitive, Bounded, and Range types</LI>
+				</OL>
+			</LI>
+		</UL>
+	</P>
+	<BR />
+	
+	<H3> 3.2 Complex sub-package</H3>
+	<P>There are several classes within the Complex package, which are:
+		<OL>
+			<LI>Complex settings - The main types are 
+				<UL>
+					<LI>AccountSettings: prefix "ACC"</LI>
+					<LI>BigSetting: parent of Complex settings</LI>
+					<LI>GeneralSettings: prefix "GEN"</LI>
+					<LI>StrategySettings: prefix "STR"</LI>
+					<LI>SymbolSettings: prefix "SYM"</LI>
+				</UL>
+			</LI>
+			<LI>Supporting classes and interfaces are -
+				<UL>
+					<LI>BigSettingFrame</LI>
+					<LI>Run</LI>
+					<LI>RunSettings</LI>
+				</UL>
+			</LI>
+		</OL>
+
+		<H4>BigSetting is the parent of Complex settings</H4>
+		BigSetting contains a BigSettingFrame, which is the link between the 
+		HTML settings and HillsSim.<BR />
+		 BigSettingFrame is made of a raw frame, which is a String[][] 
+		(String Array of Array).<BR />
+		The raw frame contains a "key-value" pair of 
+		<I>"SETTING_ID":"SettingType-SettingValue"</I>.<BR />
+
+		<BR />
+		
+		An example is <I>"GEN_AUDIT_TRAIL":"PRIMITIVE-BOOLEAN"</I>.<BR />
+		It means GeneralSetting named "Audit Trail" should be a setting type of primitive,
+		of boolean value.<BR />
+		<BR />
+		
+		BigSettingFrame can return setting values for Primitives and Bounded settings,
+		given the key of the "key-value" pair.<BR />
+		For Range settings, BigSettingFrame can return the setting.<BR />
+		The definition of all BigSettingFrame are in the Constants class, 
+		in Settings package.<BR /> 
+		For EASettings, the BigSettingFrame must be declared in the EA class, 
+		within the EA package.<BR />
+		 
+		
+		<H4>All EARun must implement Run</H4>
+		EARun is the 'parcel' of Run setting that is passed from the Worker to 
+		RunWorker,<BR />
+		on each iteration of the simulation. Run is an interface, that ensures every EARun  
+		must implement:
+		<OL>
+			<LI>Get ID of the Run</LI>
+			<LI>Get Total number of Runs</LI>
+			<LI>Get String equivalent of Run</LI>
+		</OL>
+		
+		<H4>All EASettings must extend BigSetting and implement RunSettings</H4>
+		The EASettings are customizable, depending on the needs of the EA.<BR />
+		The BigSettingFrame of the EA must be stored in the Constants class, within the EA package.
+		<BR />
+		RunSettings is an interface, that ensures every EASettings must implement 
+		List&lt;Run&gt; getRuns method.<BR />
+		This method ensures that EASettings produce a list of Runs, for RunWorker to work with.
+		
+		
+		<H4>Exceptions handling</H4>
+		The exceptions handled by the classes within "complex" sub-package are:
+		<UL>
+			<LI>BigSettingFrame
+				<OL>
+					<LI>Error making BigSettingFrame</LI>
+					<LI>Error of Html BigSettingFrame mismatch with Constants class BigSettingFrame</LI>
+					<LI>Error getting setting values from primitive types</LI>
+					<LI>Error getting bounds from bounded types</LI>
+				</OL>
+			</LI>
+		</UL>		
+	</P>
+  </BODY>
+</HTML>

@@ -1,0 +1,25 @@
+Strategy name
+Audit trail needed
+Output directory
+
+Naming prefix
+Iterations enabled
+Number of opt. parameters
+Period start/end
+
+Account balance
+Currency of account balance
+Position size (Fixed)
+Position size (Variable)
+Margin call enabled
+Stop out level
+
+Source
+Symbol
+Time frame
+Margin rate
+Pip (No of decimal places)
+Precision distance (No of decimal places)
+Minimum contract size
+Interval for contract size
+Minimum stop size
